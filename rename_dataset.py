@@ -11,5 +11,6 @@ out_dir = "bees_label"
 
 for i in img_path:
     file_name = i.split('.jpg')[0]
+    print(file_name)
     with open(os.path.join(root_dir, out_dir, "{}.txt".format(file_name)), 'w') as f:
         f.write(label)

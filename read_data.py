@@ -8,7 +8,7 @@ Dataset:提供一种方式去获取数据及其对应的真实label值
     1、如何获取每一个数据及其label
     2、总共有多少的数据
     数据集文件下有ants和bees两个label文件
-Dataloader:为后面的网络提供不同的数据形式（打包）
+                             
 """
 
 #1、Dataset
@@ -31,8 +31,8 @@ class MyData(Dataset): #继承Dataset类
         return len(self.image_path)
 
 root_dir = "C:\\Users\\HP\\Desktop\\数据集\\hymenoptera_data\\train\\"
-ants_label_dir = "ants"
-bees_label_dir = "bees"
+ants_label_dir = "ants_image"
+bees_label_dir = "bees_image"
 ants_dataset = MyData(root_dir, ants_label_dir)
 bees_dataset = MyData(root_dir, bees_label_dir)
 
