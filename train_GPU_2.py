@@ -29,10 +29,13 @@ class Sanqi(nn.Module):
         super(Sanqi, self).__init__()
         self.model = nn.Sequential(
             nn.Conv2d(3, 32, 5, 1, 2),
+            nn.ReLU(),
             nn.MaxPool2d(2),
             nn.Conv2d(32, 32, 5, 1, 2),
+            nn.ReLU(),
             nn.MaxPool2d(2),
             nn.Conv2d(32, 64, 5, 1, 2),
+            nn.ReLU(),
             nn.MaxPool2d(2),
             nn.Flatten(),  # 展平后为64*4*4
             nn.Linear(64 * 4 * 4, 64),
@@ -55,7 +58,7 @@ optimizer = torch.optim.SGD(sanqi.parameters(), lr=learing_rate)
 #设置训练网络的一些参数
 total_train_step = 0 #记录训练的次数
 total_test_step = 0 #记录测试的次数
-epoch = 10  #训练的轮数
+epoch = 30  #训练的轮数
 
 #添加tensboard
 writer = SummaryWriter("./logs_train")
@@ -110,7 +113,7 @@ for i in range(epoch):
     total_test_step += 1
 
     #保存模型
-    torch.save(sanqi, "sanqi_{}.pth".format(i))
+    torch.save(sanqi, "sanqi_{}_gpu.pth".format(i))
     print("模型 sanqi_{}.pth 已保存".format(i))
 
 writer.close()
